@@ -6,6 +6,7 @@ import adminRouter from "./routes/admin.route.js"
 import songsRouter from "./routes/songs.route.js"
 import albumsRouter from "./routes/albums.route.js"
 import statsRouter from "./routes/stats.route.js"
+import { connectDB } from "./lib/db.js";
 
 const app = express();
 dotenv.config();
@@ -21,4 +22,5 @@ app.use("/api/stats", statsRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running om port ${PORT}`);
+  connectDB();
 })
