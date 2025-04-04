@@ -1,5 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
+import { clerkMiddleware } from "@clerk/express";
+
 import userRouter from "./routes/user.route.js"
 import authRouter from "./routes/auth.route.js"
 import adminRouter from "./routes/admin.route.js"
@@ -14,6 +16,7 @@ dotenv.config();
 const PORT = process.env.PORT;
 
 app.use(express.json()); // Parse JSON bodies (as sent by API clients)
+app.use(clerkMiddleware()) // this will add auth to request body
 
 app.use("/api/users", userRouter)
 app.use("/api/auth", authRouter);
