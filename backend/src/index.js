@@ -13,6 +13,8 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 
+app.use(express.json()); // Parse JSON bodies (as sent by API clients)
+
 app.use("/api/users", userRouter)
 app.use("/api/auth", authRouter);
 app.use("/api/admin", adminRouter);
