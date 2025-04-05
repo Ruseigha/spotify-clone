@@ -109,5 +109,15 @@ export const createAlbum = async (req, res, next) => {
 };
 
 export const deleteAlbum = async (req, res, next) => {
-
+  try {
+    const { id } = req.params;
+    await Song.deleteMany({ albumId: id }); // delete all songs associated with the album
+    await Album.findByIdAndDelete(id); // delete the album itself
+    res.status(200).json({
+      message: "Album deleted successfully",
+    });
+  } catch (error) {
+    next(error);
+    console.error("Error deleting album:", error);
+  }
 };
