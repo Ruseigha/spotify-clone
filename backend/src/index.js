@@ -46,3 +46,5 @@ app.listen(PORT, () => {
   console.log(`Server is running om port ${PORT}`);
   connectDB();
 })
+
+// todo: socket.io implementation
