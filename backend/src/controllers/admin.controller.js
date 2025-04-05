@@ -58,3 +58,27 @@ export const createSong = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+export const deleteSong = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const song = await Song.findById(id);
+
+    // if song belogs to an album, remove it from the album's songs array
+    if(song.albumId){
+      await Album.findByIdAndUpdate(song.albumId, {
+        $pull: { songs: song._id },
+      });
+    }
+
+    // delete the song from the database
+    await Song.findByIdAndDelete(id);
+
+    res.status(200).json({
+      message: "Song deleted successfully",
+    });
+  } catch (error) {
+    next(error);
+    console.error("Error deleting song:", error);
+  }
+};
