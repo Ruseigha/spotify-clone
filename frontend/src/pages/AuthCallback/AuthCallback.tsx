@@ -9,17 +9,22 @@ import { useNavigate } from 'react-router';
 const AuthCallback = () => {
   const { isLoaded, user } = useUser();
   const navigate = useNavigate();
+  const syncAttempted = React.useRef(false);
 
   useEffect(() => {
     const syncUser = async () => {
       try {
-        if(!isLoaded || !user) return;
+        if(!isLoaded || !user || syncAttempted.current) return;
+
         await axiosInstance.post("/auth/callback", {
           id: user.id,
           firstName: user.firstName,
           lastName: user.lastName,
           imageUrl: user.imageUrl,
         })
+
+        syncAttempted.current = true;
+        
       } catch (error) {
         console.log("Error in auth callback", error);
       } finally {
