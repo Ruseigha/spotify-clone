@@ -2,13 +2,21 @@ import PlayListSkeleton from '@/components/skeletons/PlayListSkeleton'
 import { buttonVariants } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { cn } from '@/lib/utils'
+import { useMusicStore } from '@/stores/useMusicStore'
 import { SignedIn } from '@clerk/clerk-react'
 import { HomeIcon, Library, MessageCircle } from 'lucide-react'
-import React from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router'
 
 const LeftSideBar = () => {
-  const isLoading = true;
+  const { isLoading, albums, fetchAlbums } = useMusicStore();
+
+  useEffect(() => {
+    fetchAlbums();
+  },[fetchAlbums]);
+
+  console.log({albums});
+
   return (
     <div className='h-full flex flex-col gap-2'>
       {/* navigation menu */}
