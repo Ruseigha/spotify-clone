@@ -1,7 +1,6 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* @custom-variant dark (&:is(.dark *));
 
 #root {
   max-width: 1280px;
@@ -160,4 +159,4 @@
   body {
     @apply bg-background text-foreground;
   }
-}
+} */
