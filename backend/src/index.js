@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { clerkMiddleware } from "@clerk/express";
 import fileUpload from "express-fileupload";
 import path from "path";
+import cors from "cors";
 
 import userRouter from "./routes/user.route.js"
 import authRouter from "./routes/auth.route.js"
@@ -17,10 +18,14 @@ const __dirname = path.resolve(); // Get the current directory name
 dotenv.config();
 
 const PORT = process.env.PORT;
-
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.) to be sent
+}));
+ 
 app.use(express.json()); // Parse JSON bodies (as sent by API clients)
 app.use(clerkMiddleware()) // this will add auth to request body
-app.use(fileUpload({
+app.use(fileUpload({ 
   useTempFiles: true,
   tempFileDir: path.join(__dirname, "tmp"),
   createParentPath: true,
