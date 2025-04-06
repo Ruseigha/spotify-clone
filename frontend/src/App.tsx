@@ -1,9 +1,11 @@
 import { Route, Routes } from "react-router";
+
 import HomePage from "./pages/HomePage/HomePage.tsx";
 import AuthCallback from "./pages/AuthCallback/AuthCallback.tsx";
 import "./App.css";
 import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react";
 import MainLayout from "./Layout/MainLayout.tsx";
+import ChatPage from "./pages/Chart/ChatPage.tsx";
 
 function App() {
 
@@ -15,7 +17,7 @@ function App() {
 
         <Route element={<MainLayout/>}>
           <Route path="/" element={<HomePage />}/>
-            
+          <Route path="/chat" element={<ChatPage />}/>
         </Route>
       </Routes>
     </>
