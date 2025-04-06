@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router";
 import './index.css'
 import App from './App.tsx';
 import AuthProvider from './providers/AuthProvider.tsx';
+import { ThemeProvider } from './providers/ThemeProvider.tsx';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -18,9 +19,11 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
       <AuthProvider>
-        <BrowserRouter>
-          <App /> 
-        </BrowserRouter>
+        <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
+          <BrowserRouter>
+            <App /> 
+          </BrowserRouter>
+        </ThemeProvider>
       </AuthProvider>
     </ClerkProvider>
   </StrictMode>,
