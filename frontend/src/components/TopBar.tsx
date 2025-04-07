@@ -7,7 +7,7 @@ import { useAuthStore } from '@/stores/useAuthStore'
 const TopBar = () => {
   const { isAdmin } = useAuthStore()
   return (
-    <div className='flex justify-between items-center bg-zinc-900/75 p-4 sticky top-0 z-10 backdrop-blur-md rounded-md'>
+    <div className='flex justify-between items-center bg-zinc-900/75 p-4 sticky top-0 z-10 backdrop-blur-md rounded-md mb-0'>
       <div className='flex gap-2 items-center'>
         <img src="/spotify.png" alt="spotify logo" className='size-8'/>
         Rufify
