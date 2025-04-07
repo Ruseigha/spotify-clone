@@ -12,7 +12,7 @@ const LeftSideBar = () => {
   const { isLoading, albums, fetchAlbums } = useMusicStore();
 
   useEffect(() => {
-    fetchAlbums();
+    fetchAlbums(); 
   },[fetchAlbums]);
 
   console.log({albums});
@@ -53,7 +53,17 @@ const LeftSideBar = () => {
 
         <ScrollArea className='h-[calc(100vh-300px)]'>
           <div className='space-y-2'>
-            {isLoading ? (<PlayListSkeleton/>) : ("Some playlists")}
+            {isLoading ? (<PlayListSkeleton/>) : (
+              albums.map((album) => (
+                <Link to={`/album/${album._id}`} key={album._id} className='p-2 hover:bg-zinc-800 rounded-md flex items-center gap-3 group cursor-pointer'>
+                  <img src={album.imageUrl} alt="playlist image" className='size-12 rounded-md flex-shrink-0 object-cover'/>
+                  <div className='flex-1 min-w-0 hidden md:block'>
+                    <p className='font-medium truncate'>{album.title}</p>  
+                    <p className='text-sm text-zinc-400 text-truncate'>Album • {album.artist}</p>  
+                  </div>
+                </Link>
+              ))
+            )}
           </div>
         </ScrollArea>
       </div>
@@ -61,4 +71,4 @@ const LeftSideBar = () => {
   )
 }
 
-export default LeftSideBar
+export default LeftSideBar;
