@@ -6,6 +6,7 @@ import "./App.css";
 import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react";
 import MainLayout from "./Layout/MainLayout.tsx";
 import ChatPage from "./pages/Chart/ChatPage.tsx";
+import AlbumPage from "./pages/Album/AlbumPage.tsx";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route element={<MainLayout/>}>
           <Route path="/" element={<HomePage />}/>
           <Route path="/chat" element={<ChatPage />}/>
+          <Route path="/album/:albumId" element={<AlbumPage />}/>
         </Route>
       </Routes>
     </>
