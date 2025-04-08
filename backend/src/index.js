@@ -39,7 +39,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/songs", songsRouter);
 app.use("/api/albums", albumsRouter);
-app.use("/api/stats", statsRouter);
+app.use("/api/stats", statsRouter); 
 
 // error handling middleware
 app.use((err, req, res, next) => {
@@ -52,4 +52,4 @@ app.listen(PORT, () => {
   connectDB();
 })
 
-// todo: socket.io implementation
+// todo: socket.io implementation 
