@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ClerkProvider } from "@clerk/clerk-react";
 import { BrowserRouter } from "react-router";
-
+import { Toaster } from 'react-hot-toast';
 
 import './index.css'
 import App from './App.tsx';
@@ -17,6 +17,7 @@ if (!PUBLISHABLE_KEY) {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <Toaster position="top-right" reverseOrder={false} />
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
       <AuthProvider>
         <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
